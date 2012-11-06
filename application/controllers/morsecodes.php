@@ -5,10 +5,6 @@ class Morsecodes extends CI_Controller {
 	function __construct()
 	{
 		parent::__construct();
-	}
-
-	function index()
-	{
 		$this->data['code1'] = array(
 		'name'        => 'code',
 		'id'          => 'code1',
@@ -21,25 +17,31 @@ class Morsecodes extends CI_Controller {
 		'value'       => 'decode',
 		'checked'     => FALSE,
 		);
-
-		$this->data['page'] = 'main_form';
-		$this->load->view('container', $this->data);
 	}
 
-	function result()
+
+	public function index()
 	{
-
-		$crlf = "\n";
-		
-		$this->load->library('MorseCode');		
-		$file_string = $this->morsecode->convert();
-
-		$this->data['file_string'] = $file_string;
-		$this->data['filetype'] = $filetype;
-
-		$this->data['page'] = 'main_result';
-		$this->load->view('container', $this->data);
+		$this->data['message'] = "";
+		$this->load->view('morsecodes/form', $this->data);
 	}
+
+
+	function convert(){
+
+		$this->load->library('MorseCode');
+	
+		if($this->input->post('code') == "encode"){
+			$message = $this->morsecode->convert2morse();
+		} 
+		elseif($this->input->post('code') == "decode")
+		{
+			$message = $this->morsecode->morse2text();
+		}
+		$this->data['message'] = $message;
+		$this->load->view('morsecodes/form', $this->data);
+	}	
+	
 
 }
 

@@ -17,18 +17,6 @@ var $arr_convert;
 		$this->CI =& get_instance();
 	}
 
-	function convert(){
-
-		if($this->CI->input->post('code') == "encode"){
-			return $this->convert2morse();
-		} 
-		elseif($this->CI->input->post('code') == "decode")
-		{
-			return $this->morse2text();
-		}
-
-	}
-
 	function convert2morse(){
 
 		$mytextstring = strtolower($this->CI->input->post('message'));
@@ -165,8 +153,5 @@ var $arr_convert;
 
 		return $returnstring;
 
-
 	}
 }
-
-
