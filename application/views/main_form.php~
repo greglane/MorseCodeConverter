@@ -1,0 +1,194 @@
+<div id="inner_content">
+<!-- <a href="/"><?php echo $this->lang->line('home'); ?></a> &raquo; -->
+<p class="first_para"><?php echo nl2br($this->lang->line('site_intro')); ?>&nbsp;</p>
+<ul class="tabs">
+    <li id="tab-1"><a href="#tab1"><?php echo $this->lang->line('make_vcard'); ?></a></li>
+    <!--
+    <li id="tab-2"><a href="#tab2"><?php echo $this->lang->line('make_mecard'); ?></a></li>
+    -->
+    <li id="tab-3"><a href="#tab3"><?php echo $this->lang->line('link_url'); ?></a></li>
+    <li id="tab-4"><a href="#tab4"><?php echo $this->lang->line('map'); ?></a></li>
+    <li id="tab-5"><a href="#tab5"><?php echo $this->lang->line('free_text_to_qr'); ?></a></li>
+    <li id="tab-6"><a href="#tab6"><?php echo $this->lang->line('morse_code'); ?></a></li>
+</ul>
+<div class="tab_container">
+    <div id="tab1" class="tab_content">
+<div class="content_left">
+<?php
+$atts = array('id' => 'frm_vcf');
+echo form_open('qrdash',$atts);
+echo form_fieldset();
+?>
+<?php echo form_hidden('filetype','vcf'); ?>
+<p><?php echo form_label($this->lang->line('given_name').':', 'fname') ?><?php echo form_input('fname'); ?></p>
+<p><?php echo form_label($this->lang->line('family_name').':', 'lname') ?><?php echo form_input('lname'); ?></p>
+<p><?php echo form_label($this->lang->line('organisation').':', 'organisation') ?><?php echo form_input('organisation'); ?></p>
+<p><?php echo form_label($this->lang->line('email').':', 'email') ?><?php echo form_input('email'); ?></p>
+<p><?php echo form_label($this->lang->line('telephone').':', 'phone') ?><?php echo form_input('phone'); ?></p>
+<!--<p><?php echo form_label('Mobile:', 'mobile') ?><?php echo form_input('mobile'); ?></p>-->
+<?php echo anchor('#','Make vCard &amp;<br/> QR Code',array('class' => 'btnGold btn_marginleft')) ?>
+<!--<?php echo form_submit(array('name' => 'btnQRcode', 'value' => $this->lang->line('make_qr_code'))); ?>-->
+
+<?php echo form_fieldset_close(); ?>
+<?php echo form_close(); ?>
+
+</div>
+<div class="content_right">
+<div class="blurb"><h2><?php echo $this->lang->line('what_is_a_vcard'); ?></h2>
+<?php echo $this->lang->line('about_vcard'); ?>
+</div>
+</div>
+	<div class="clear"></div>
+    </div>
+    <div id="tab2" class="tab_content">
+<div class="content_left">
+<?php
+$atts = array('id' => 'frm_mecard');
+echo form_open('qrdash',$atts);
+echo form_fieldset();
+?>
+<?php echo form_hidden('filetype','mecard'); ?>
+<p><?php echo form_label($this->lang->line('given_name').':', 'fname') ?><?php echo form_input('fname'); ?></p>
+<p><?php echo form_label($this->lang->line('family_name').':', 'lname') ?><?php echo form_input('lname'); ?></p>
+<p><?php echo form_label($this->lang->line('email').':', 'email') ?><?php echo form_input('email'); ?></p>
+<p><?php echo form_label($this->lang->line('telephone').':', 'phone') ?><?php echo form_input('phone'); ?></p>
+<p><?php echo form_label('Mobile:', 'mobile') ?><?php echo form_input('mobile'); ?></p>
+<?php echo anchor('#','Make mecard &amp;<br/> QR Code',array('class' => 'btnGold btn_marginleft')) ?>
+<!--<?php echo form_submit(array('name' => 'btnQRcode', 'value' => $this->lang->line('make_qr_code'))); ?> -->
+<?php echo form_fieldset_close(); ?>
+<?php echo form_close(); ?>
+</div>
+<div class="content_right">
+<div class="blurb"><h2><?php echo $this->lang->line('what_is_a_mecard'); ?></h2>
+<?php echo $this->lang->line('about_mecard'); ?>
+</div>
+</div>
+	<div class="clear"></div>
+    </div>
+
+    <div id="tab3" class="tab_content">
+<div class="content_left">
+<?php
+$atts = array('id' => 'frm_link');
+echo form_open('qrdash',$atts);
+echo form_fieldset();
+echo form_hidden('filetype','text');
+?>
+<p><?php echo form_label('Link:', 'myfile') ?><?php echo form_input('myfile','http://'); ?></p>
+<?php echo anchor('#',$this->lang->line('make_qr_code'),array('class' => 'btnGold_single btn_marginleft')) ?>
+<!--<?php echo form_submit(array('name' => 'btnQRcode', 'value' => $this->lang->line('make_qr_code'))); ?>-->
+<?php echo form_fieldset_close(); ?>
+<?php echo form_close(); ?>
+</div>
+<div class="content_right">
+<div class="blurb">
+<?php echo $this->lang->line('about_url'); ?>
+</div>
+</div>
+	<div class="clear"></div>
+    </div>
+
+    <div id="tab4" class="tab_content">
+<div class="content_left">
+    <div id="map_canvas">map</div>
+    <div id="front-layer">
+      <form action="#" onsubmit="showAddress(this.address.value); return false">
+        <input type="text" size="25" name="address" value="Tokyo Station" />
+        <input type="submit" value="Find" /></form>
+    </div>
+
+</div>
+<div class="content_right_full">
+<?php
+$atts = array('id' => 'frm_location');
+$maplocationlabel = array('name' => 'maplocationlabel','id' => 'maplocationlabel','maxlength' => '50','size' => '40','class' => 'shortinput');
+echo form_open('qrdash',$atts);
+echo form_fieldset();
+echo form_hidden('filetype','location');
+?>
+<input type="hidden" name="mapzoom" id="mapzoom" value="13">
+<input type="hidden" name="maplatlng" id="maplatlng" value="">
+<p><?php echo form_label('Location label'.':', 'maplocationlabel') ?><?php echo form_input($maplocationlabel); ?></p>
+
+<?php echo anchor('#',$this->lang->line('make_qr_code'),array('class' => 'btnGold_single btn_marginleft')) ?>
+<?php echo form_fieldset_close(); ?>
+<?php echo form_close(); ?>
+<p class="content_right_full_p">Drag the pointer at left or use the in-map search to find your location.</p>
+<p class="content_right_full_p">The location label in the form above will be attached to the pointer on your map.  Also, the Google Maps link is shortened with bit.ly so the QR Code isn't too dense.</p>
+</div>
+	<div class="clear"></div>
+    </div>
+
+
+    <div id="tab5" class="tab_content">
+<div class="content_left">
+<?php
+$atts = array('id' => 'frm_free');
+echo form_open('qrdash',$atts);
+echo form_fieldset();
+echo form_hidden('filetype','text');
+?>
+<p><?php echo form_label($this->lang->line('message'), 'myfile') ?><?php echo form_textarea('myfile'); ?></p>
+<?php echo anchor('#',$this->lang->line('make_qr_code'),array('class' => 'btnGold_single btn_marginleft')) ?>
+<!--<?php echo form_submit(array('name' => 'btnQRcode', 'value' => $this->lang->line('make_qr_code'))); ?>-->
+<?php echo form_fieldset_close(); ?>
+<?php echo form_close(); ?>
+</div>
+<div class="content_right">
+<div class="blurb"><h2><?php echo $this->lang->line('free_text_2_QR'); ?></h2>
+<?php echo $this->lang->line('about_free_text'); ?>
+</div>
+</div>
+	<div class="clear"></div>
+    </div>
+    <div id="tab6" class="tab_content">
+<div class="content_left">
+<?php
+$atts = array('id' => 'frm_morse');
+echo form_open('main/result',$atts);
+echo form_fieldset();
+?>
+<?php echo form_hidden('filetype','morse'); ?>
+<p><?php echo form_label($this->lang->line('message'), 'message') ?><?php echo form_textarea('message'); ?></p>
+<p><?php echo form_label($this->lang->line('encode'), 'code1') ?>
+<?php echo form_radio($code1); ?></p>
+<p><?php echo form_label($this->lang->line('decode'), 'code2') ?>
+<?php echo form_radio($code2); ?></p>
+<?php echo anchor('#',$this->lang->line('make_morse'),array('class' => 'btnGold_single btn_marginleft')) ?>
+<!--<?php echo form_submit(array('name' => 'btnMorse', 'value' => $this->lang->line('convert'))); ?>-->
+<?php echo form_fieldset_close(); ?>
+<?php echo form_close(); ?>
+</div>
+<div class="content_right">
+<div class="blurb"><h2><?php echo $this->lang->line('encode_decode_morse'); ?></h2>
+<?php echo $this->lang->line('about_morse'); ?>
+</div>
+</div>
+	<div class="clear"></div>
+    </div>
+
+
+<div class="clear"></div>
+</div>
+
+
+
+<div id="three_col">
+<div class="firstcol">
+<h2 class="green"><?php echo $this->lang->line('qr_code_title'); ?></h2>
+<p>QR stands for 'Quick Response'.  Traditional bar codes are 1 dimensional.  This means the data is stored horizontally, so if you want more data you just have to make it really long.  A QR Code stores data in 2 dimensions.  This means it can store much more data than a traditional bar code.  The denser the bar code (ie. the more squares it has) the more data it can hold. However, denser codes are harder to scan.</p>
+</div>
+<div class="textcol">
+<h2 class="orange"><?php echo $this->lang->line('reading_codes'); ?></h2>
+<p>QR code readers have been integrated into Japanese cell phones for many years.  However, QR Code Readers are generally available as installable apps for smart phones such as iPhone and Android.</p>
+<p>There is a wide range in quality - both in the ability of the reader to scan the code and in what the scanner does with the information.</p>
+<p>The best we've found on iPhone is Herold QR which accurately scans the codes and if it's a vCard, allows you to save the info directly to your address book.</p>
+</div>
+<div class="textcol">
+<h2 class="red"><?php echo $this->lang->line('designer_qr_codes'); ?></h2>
+<p>QR Codes offer many design opportunities.  Because it has both a visual appearance and a hidden message - only decipherable with a mobile phone, it provides mixed realities and a chance for the audience to interact with the designer QR code.</p>
+<p>Artists and musicians who have used QR codes include the Pet Shop Boys, DJ Spooky and Kylie Minogue.</p>
+</div>
+<div class="clear"></div>
+</div>
+</div>
