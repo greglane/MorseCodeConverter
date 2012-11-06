@@ -1,17 +1,17 @@
-== Morse Code Converter ==
-
 Morse Code Converter is a library for PHP Code Igniter v2.
 
 As the name suggests, it encodes regular text to morse code and vice versa.
 
 This repo includes a sample controller and view (including HTML5 Boilerplate)
 
-=== Installation ===
+Installation
+============
 
 To use the library, just copy it into your application/libraries directory in Code Igniter.  It has no dependencies so you don't need anything else to make it work.
 If you want the included demo to work, you will need to autoload the 'form' and 'url' helpers.
 
-=== Methods ===
+Methods
+=======
 
 convert2morse()
 --------------
@@ -29,7 +29,8 @@ only latin Morse code characters used in English are converted. The library can 
 written with a variety of characters.  For example, '_', '-' and '—' are all acceptable as
 dashes and '.' and '·' are acceptable for the dots.
 
-=== Error Handling ===
+Error Handling
+==============
 
 At the moment, there is none. The library expects to receive plain text or Morse as
 appropriate.
