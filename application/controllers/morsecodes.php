@@ -33,11 +33,16 @@ class Morsecodes extends CI_Controller {
 	
 		if($this->input->post('code') == "encode"){
 			$message = $this->morsecode->convert2morse();
+			$this->data['code1']['checked'] = FALSE;
+			$this->data['code2']['checked'] = TRUE;
 		} 
 		elseif($this->input->post('code') == "decode")
 		{
 			$message = $this->morsecode->morse2text();
+			$this->data['code1']['checked'] = TRUE;
+			$this->data['code2']['checked'] = FALSE;
 		}
+
 		$this->data['message'] = $message;
 		$this->load->view('morsecodes/form', $this->data);
 	}	

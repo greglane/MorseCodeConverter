@@ -93,6 +93,8 @@ textarea {
    Author's custom styles
    ========================================================================== */
 
+#wrapper{width:50%;margin:2em auto;}
+label{font-size:15px;font-weight:bold;}
 
 
 

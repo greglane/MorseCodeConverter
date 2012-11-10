@@ -22,6 +22,7 @@
         <![endif]-->
 
         <!-- Add your site or application content here -->
+<div id="wrapper">
 <h1>Morse Code Encoder/Decoder</h1>
 <div>
 <?php
@@ -29,7 +30,8 @@ $atts = array('id' => 'frm_morse');
 echo form_open('morsecodes/convert',$atts);
 echo form_fieldset();?>
 <?php echo form_hidden('filetype','morse'); ?>
-<p><?php echo form_label("Message to encode/decode:", 'message') ?><?php echo form_textarea('message',$message); ?></p>
+<p><?php echo form_label("Message to encode/decode:", 'message') ?></p>
+<p><?php echo form_textarea('message',$message); ?></p>
 <p><?php echo form_label("Encode:", 'code1') ?>
 <?php echo form_radio($code1); ?></p>
 <p><?php echo form_label("Decode:", 'code2') ?>
@@ -38,7 +40,7 @@ echo form_fieldset();?>
 <?php echo form_fieldset_close(); ?>
 <?php echo form_close(); ?>
 </div>
-
+</div>
         <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
         <script>window.jQuery || document.write('<script src="<?php echo base_url()?>/assets/js/vendor/jquery-1.8.2.min.js"><\/script>')</script>
         <script src="<?php echo base_url()?>/assets/js/plugins.js"></script>

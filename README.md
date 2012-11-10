@@ -1,3 +1,6 @@
+Introduction
+============
+
 Morse Code Converter is a library for PHP Code Igniter v2.
 
 As the name suggests, it encodes regular text to morse code and vice versa.
