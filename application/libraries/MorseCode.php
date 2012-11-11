@@ -5,6 +5,8 @@
 * 
 * @author      Greg Lane
 * @link        http://www.greglane.me/
+* 
+*
 */
 
 class Morsecode
@@ -13,13 +15,20 @@ class Morsecode
 var $CI;
 var $arr_convert;
 
-	function __construct(){
+	public function __construct(){
 		$this->CI =& get_instance();
 	}
 
-	function convert2morse(){
+/**
+ * Encodes latin text string to morse code
+ *
+ * @access	public
+ * @param	string
+ * @return	string
+ */	
+	public function convert_to_morse($message){
 
-		$mytextstring = strtolower($this->CI->input->post('message'));
+		$mytextstring = strtolower($message);
 
 		$this->arr_convert = array(
 		'a' => '·-  ',
@@ -74,21 +83,22 @@ var $arr_convert;
 
 	}
 
-	function morse2text()
+/**
+ * Decodes morse code string to latin text
+ *
+ * @access	public
+ * @param	string
+ * @return	string
+ */	
+	public function morse_to_text($message)
 	{
 
-		$mytextstring = str_replace(".","·",$this->CI->input->post('message'));
+		$mytextstring = str_replace(".","·",$message);
 		$mytextstring = str_replace("_","-",$mytextstring);
 		$mytextstring = str_replace("—","-",$mytextstring);
 
 		$words = array();
 		$words = preg_split("([\s]{3,})", $mytextstring);
-//		$words = explode("  ",$mytextstring);
-//		echo("<pre>");
-//		print_r($words);
-//		echo("</pre>");
-//		die();
-
 
 		$arr_convert = array(
 		'·-' => 'a',
